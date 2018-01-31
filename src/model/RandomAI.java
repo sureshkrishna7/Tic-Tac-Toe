@@ -20,6 +20,7 @@ public class RandomAI implements TicTacToeStrategy {
 	  int x = rand.nextInt(3);
 	  int y = rand.nextInt(3);
 	  
+	  //checks if the random integer is available or not 
 	  while(!(theGame.available(x, y))) {
 		  x = rand.nextInt(3);
 		  y = rand.nextInt(3);

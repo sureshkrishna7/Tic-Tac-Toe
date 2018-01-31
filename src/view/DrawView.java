@@ -210,10 +210,12 @@ public class DrawView extends BorderPane implements Observer {
 		for (int r = 0; r < 3; r++) {
 			for (int c = 0; c < 3; c++) {
 				if(temp[r][c] == 'X') {
+					//drawing the x images
 					Image hunter = new Image("file:images/x.png", false);
 					gc.drawImage(hunter, 5+((c*70)+35), 55+((r*70)+35));
 				}
 				else if(temp[r][c] == 'O') {
+					//drawing the y images
 					Image wumpus = new Image("file:images/o.png", false);
 					gc.drawImage(wumpus, 5+((c*70)+35), 55+((r*70)+35));
 				}

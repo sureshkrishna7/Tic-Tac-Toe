@@ -38,6 +38,7 @@ import view.TextAreaView;
  * You can also select two different strategies to play against from the menus
  *   
  * @author Rick Mercer
+ * @student Suresh Krishna Devendran
  */ 
 public class TicTacToeGUI extends Application {
 
@@ -96,6 +97,7 @@ public class TicTacToeGUI extends Application {
 		Menu strategies = new Menu("Stategies");
 		strategies.getItems().addAll(beginner, intermediate);
 
+		//added drawing menus
 		MenuItem button = new MenuItem("Button");
 		MenuItem text = new MenuItem("TextArea");
 		MenuItem draw = new MenuItem("Drawing");

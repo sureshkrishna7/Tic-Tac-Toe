@@ -56,7 +56,8 @@ public class TextAreaView extends BorderPane implements Observer {
 		this.setCenter(fields);
 		textBox = new TextArea();
 		textBox.setEditable(false);
-
+		
+		//changed the font to recommended Courier font
 		textBox.setFont(new Font("Courier", 24));
 		textBox.setMaxWidth(254);
 		textBox.setPadding(new Insets(0, 0, 0, 0));

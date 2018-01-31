@@ -89,7 +89,7 @@ public class IntermediateAI implements TicTacToeStrategy {
 				rowSum = 0;
 			}
 
-			//check for two O in cols to win
+			//check for two O in columns to win
 			for (int c = 0; c < size; c++) {
 				int colSum = 0;
 				for (int r = 0; r < size; r++) {
@@ -157,7 +157,7 @@ public class IntermediateAI implements TicTacToeStrategy {
 				rowSum = 0;
 			}
 
-			//check for two X in cols to prevent X win
+			//check for two X in columns to prevent X win
 			for (int c = 0; c < size; c++) {
 				int colSum = 0;
 				for (int r = 0; r < size; r++) {
@@ -224,7 +224,7 @@ public class IntermediateAI implements TicTacToeStrategy {
 				}
 			}
 
-			//if nobody is winning then lets focus on the set peices
+			//if nobody is winning then lets focus on the set peices for winning
 			if(theGame.available(1, 1)) {
 				return new Point(1, 1);
 			}
