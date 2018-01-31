@@ -16,6 +16,7 @@ import model.IntermediateAI;
 import model.RandomAI;
 import model.TicTacToeGame;
 import view.ButtonView;
+import view.DrawView;
 import view.TextAreaView;
 
 /**
@@ -40,94 +41,108 @@ import view.TextAreaView;
  */ 
 public class TicTacToeGUI extends Application {
 
-  public static void main(String[] args) {
-    launch(args);
-  }
+	public static void main(String[] args) {
+		launch(args);
+	}
 
-  private TicTacToeGame theGame;
+	private TicTacToeGame theGame;
 
-  private MenuBar menuBar;
+	private MenuBar menuBar;
 
-  private Observer currentView;
-  private Observer buttonView;
-  private Observer textAreaView;
- 
-  private BorderPane window;
-  public static final int width = 254;
-  public static final int height = 360;
+	private Observer currentView;
+	private Observer buttonView;
+	private Observer textAreaView;
+	private Observer drawView;
 
-  public void start(Stage stage) {
-    stage.setTitle("Tic Tac Toe");
-    window = new BorderPane();
-    Scene scene = new Scene(window, width, height);
+	private BorderPane window;
+	public static final int width = 254;
+	public static final int height = 360;
 
-    setupMenus();
-    window.setTop(menuBar);
-    initializeGameForTheFirstTime();
+	public void start(Stage stage) {
+		stage.setTitle("Tic Tac Toe");
+		window = new BorderPane();
+		Scene scene = new Scene(window, width, height);
 
-    // Set up the views
-    buttonView = new ButtonView(theGame);
-    textAreaView = new TextAreaView(theGame);
-    theGame.addObserver(buttonView);
-    theGame.addObserver(textAreaView);
-   
-    setViewTo(buttonView);
-    stage.setScene(scene);
-    stage.show();
-  }
-  
-  /**
-   * Set the game to the default of an empty board and the random AI
-   */
-  public void initializeGameForTheFirstTime() {
-    theGame = new TicTacToeGame();
-    // This event driven program will always have
-    // a computer player who takes the second turn
-    theGame.setComputerPlayerStrategy(new RandomAI());
-  }
+		setupMenus();
+		window.setTop(menuBar);
+		initializeGameForTheFirstTime();
+		
+		// Set up the views
+		buttonView = new ButtonView(theGame);
+		textAreaView = new TextAreaView(theGame);
+		drawView = new DrawView(theGame);
+		theGame.addObserver(buttonView);
+		theGame.addObserver(textAreaView);
+		theGame.addObserver(drawView);
 
-  private void setupMenus() {
-    MenuItem beginner = new MenuItem("RandomAI");
-    MenuItem intermediate = new MenuItem("Intermediate");
-    Menu strategies = new Menu("Stategies");
-    strategies.getItems().addAll(beginner, intermediate);
+		setViewTo(buttonView);
+		stage.setScene(scene);
+		stage.show();
+	}
 
-    MenuItem newGame = new MenuItem("New Game");
-    Menu options = new Menu("Options");
-    options.getItems().addAll(newGame, strategies);
+	/**
+	 * Set the game to the default of an empty board and the random AI
+	 */
+	public void initializeGameForTheFirstTime() {
+		theGame = new TicTacToeGame();
+		// This event driven program will always have
+		// a computer player who takes the second turn
+		theGame.setComputerPlayerStrategy(new RandomAI());
+	}
 
-    menuBar = new MenuBar();
-    menuBar.getMenus().addAll(options);
- 
-    // Add the same listener to all menu items requiring action
-    MenuItemListener menuListener = new MenuItemListener();
-    newGame.setOnAction(menuListener);
-    beginner.setOnAction(menuListener);
-    intermediate.setOnAction(menuListener);
-  }
+	private void setupMenus() {
+		MenuItem beginner = new MenuItem("RandomAI");
+		MenuItem intermediate = new MenuItem("Intermediate");
+		Menu strategies = new Menu("Stategies");
+		strategies.getItems().addAll(beginner, intermediate);
 
-  private void setViewTo(Observer newView) {
-    window.setCenter(null);
-    currentView = newView;
-    window.setCenter((Node) currentView);
-  }
+		MenuItem button = new MenuItem("Button");
+		MenuItem text = new MenuItem("TextArea");
+		MenuItem draw = new MenuItem("Drawing");
+		Menu view = new Menu("Views");
+		view.getItems().addAll(button, text, draw);
 
-  private class MenuItemListener implements EventHandler<ActionEvent> {
+		MenuItem newGame = new MenuItem("New Game");
+		Menu options = new Menu("Options");
+		options.getItems().addAll(newGame, strategies, view);
 
-    @Override
-    public void handle(ActionEvent e) {
-      // Find out the text of the JMenuItem that was just clicked
-      String text = ((MenuItem) e.getSource()).getText();
-      if (text.equals("Button"))
-        setViewTo(buttonView);
-      else if (text.equals("TextArea"))
-        setViewTo(textAreaView);
-      else if (text.equals("New Game"))
-        theGame.startNewGame(); // The computer player has been set and should not change.
-      else if (text.equals("Intermediate"))
-        theGame.setComputerPlayerStrategy(new IntermediateAI());
-      else if (text.equals("RandomAI"))
-        theGame.setComputerPlayerStrategy(new RandomAI());
-    }
-  }
+		menuBar = new MenuBar();
+		menuBar.getMenus().addAll(options);
+
+		// Add the same listener to all menu items requiring action
+		MenuItemListener menuListener = new MenuItemListener();
+		newGame.setOnAction(menuListener);
+		beginner.setOnAction(menuListener);
+		intermediate.setOnAction(menuListener);
+		button.setOnAction(menuListener);
+		text.setOnAction(menuListener);
+		draw.setOnAction(menuListener);
+	}
+
+	private void setViewTo(Observer newView) {
+		window.setCenter(null);
+		currentView = newView;
+		window.setCenter((Node) currentView);
+	}
+
+	private class MenuItemListener implements EventHandler<ActionEvent> {
+
+		@Override
+		public void handle(ActionEvent e) {
+			// Find out the text of the JMenuItem that was just clicked
+			String text = ((MenuItem) e.getSource()).getText();
+			if (text.equals("Button"))
+				setViewTo(buttonView);
+			else if(text.equals("Drawing"))
+				setViewTo(drawView);
+			else if (text.equals("TextArea"))
+				setViewTo(textAreaView);
+			else if (text.equals("New Game"))
+				theGame.startNewGame(); // The computer player has been set and should not change.
+			else if (text.equals("Intermediate"))
+				theGame.setComputerPlayerStrategy(new IntermediateAI());
+			else if (text.equals("RandomAI"))
+				theGame.setComputerPlayerStrategy(new RandomAI());
+		}
+	}
 }
