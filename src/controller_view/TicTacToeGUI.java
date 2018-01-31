@@ -132,6 +132,7 @@ public class TicTacToeGUI extends Application {
 		@Override
 		public void handle(ActionEvent e) {
 			// Find out the text of the JMenuItem that was just clicked
+			//added a new event handler for drawing view
 			String text = ((MenuItem) e.getSource()).getText();
 			if (text.equals("Button"))
 				setViewTo(buttonView);

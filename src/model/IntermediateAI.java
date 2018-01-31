@@ -18,7 +18,7 @@ public class IntermediateAI implements TicTacToeStrategy {
 		// TODO: Return a Point that would win, if not possible to block, 
 		// if not possible to block return an available Point of your own choosing 
 
-		//Initial grand moves	
+		//Start with the best initial grand moves	
 		if(theGame.maxMovesRemaining() == 8) {
 			if(theGame.available(1, 1)) {
 				return new Point(1, 1);

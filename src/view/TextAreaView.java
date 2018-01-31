@@ -73,6 +73,7 @@ public class TextAreaView extends BorderPane implements Observer {
 		fields.add(col, 0, 1);
 		fields.add(lab2, 1, 1);
 
+		//event handler and printing the original present empty string
 		ButtonListener handler = new ButtonListener();
 		makeMove.setOnAction(handler);
 		fields.add(makeMove, 0, 2);

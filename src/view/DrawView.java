@@ -190,6 +190,7 @@ public class DrawView extends BorderPane implements Observer {
 		theGame = (TicTacToeGame) observable;
 		updateButtons();
 
+		//updating the text to represent who won
 		if (theGame.didWin('X'))
 			top = ("X wins");
 		else if (theGame.didWin('O'))

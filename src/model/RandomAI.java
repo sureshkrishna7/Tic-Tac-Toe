@@ -21,6 +21,7 @@ public class RandomAI implements TicTacToeStrategy {
 	  int y = rand.nextInt(3);
 	  
 	  //checks if the random integer is available or not 
+	  //while loop ensures that we keep checking until we get a valid row and column
 	  while(!(theGame.available(x, y))) {
 		  x = rand.nextInt(3);
 		  y = rand.nextInt(3);
