@@ -32,11 +32,11 @@ public class DrawView extends BorderPane implements Observer {
 		theGame = TicTacToeGame;
 
 		// Create the Canvas
-		canvas = new Canvas(254, 360);
+		canvas = new Canvas(510, 340);
 		// Set the width of the Canvas
-		canvas.setWidth(254);
+		canvas.setWidth(510);
 		// Set the height of the Canvas
-		canvas.setHeight(360);
+		canvas.setHeight(340);
 
 		// Get the graphics context of the canvas
 		gc = canvas.getGraphicsContext2D();

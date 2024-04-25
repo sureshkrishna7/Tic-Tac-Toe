@@ -88,7 +88,7 @@ public class TicTacToeGUI extends Application {
 		theGame = new TicTacToeGame();
 		// This event driven program will always have
 		// a computer player who takes the second turn
-		theGame.setComputerPlayerStrategy(new RandomAI());
+		theGame.setComputerPlayerStrategy(new IntermediateAI());
 	}
 
 	private void setupMenus() {
